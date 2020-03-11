@@ -8,6 +8,7 @@ server.listen(4000, () => {
 });
 
 server.use(express.json())
+
 // HTTP Method
 //URI : Scheme://host_name:port/path?parameter_list
 // https://www/google.com/some/document?with_params=value
@@ -24,7 +25,10 @@ server.get('/favicon.ico', (req, res) => {
     res.status(204);
 });
 
+
+
 // R - Read (CRUD)
+
 server.get('/hubs', (req, res) => {
     db.find()
         .then(hubs => {
@@ -35,7 +39,10 @@ server.get('/hubs', (req, res) => {
         });
 });
 
+
+
 //C - Create (CRUD)
+
 server.post('/hubs', (req, res) => {
     const hubInfo = req.body;
     console.log(hubInfo);
@@ -46,10 +53,13 @@ server.post('/hubs', (req, res) => {
         })
         .catch(err => {
             res.status(500).json({ success: false, err })
-        })
+        });
 });
 
-//D -Delete (CRUD) /hubs/5
+
+
+//D -Delete (CRUD) Ex:/hubs/5
+
 server.delete('/hubs/:id', (req, res) => {
     //const id = re.params.id; or
     const { id } = req.params;
@@ -66,9 +76,12 @@ server.delete('/hubs/:id', (req, res) => {
         .catch(err => {
             res.status(500).json({ success: false, err });
 
-        })
-})
+        });
+});
 
+
+
+//U - Update (CRUD)
 
 server.put('/hubs/:id', (req, res) => {
     const { id } = req.params;
@@ -86,8 +99,10 @@ server.put('/hubs/:id', (req, res) => {
         .catch(err => {
             res.status(500).json({ success: false, err });
 
-        })
+        });
 });
+
+
 
 server.patch('/hubs/:id', (req, res) => {
 
@@ -106,6 +121,6 @@ server.patch('/hubs/:id', (req, res) => {
         .catch(err => {
             res.status(500).json({ success: false, err });
 
-        })
+        });
 
 });
